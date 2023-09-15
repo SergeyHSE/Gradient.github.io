@@ -49,6 +49,28 @@ plt.boxplot(y_without_outliers)
 plt.title('House price without outliers')
 plt.show()
 
+# Build hists for features
+
+feature_names = list(X.columns)
+num_rows = 7
+num_cols = 2
+num_plots = len(feature_names)
+
+fig, axes = plt.subplots(nrows=num_rows, ncols=num_cols, figsize=(10, 20), dpi=150)
+axes = axes.flatten()
+
+for i in range(num_plots):
+    if i < num_plots:
+        ax = axes[i]
+        feature_data = X[feature_names[i]]
+        ax.hist(x=feature_data, bins=30, color='tab:green')
+        ax.set_title(f'Hist plot for {feature_names[i]}')
+    else:
+        fig.delaxes(axes[i])
+
+plt.tight_layout()
+plt.show()
+
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
 X_train.shape, X_test.shape, y_train.shape, y_test.shape
