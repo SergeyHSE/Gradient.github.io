@@ -14,6 +14,8 @@ data.head()
 X = data.drop(['medv'], axis=1)
 y = data['madv']
 
+#House prise distribution
+
 plt.figure(figsize(10, 8), dpi=100)
 plt.title('House price distribution')
 plt.xlabel('Price')
@@ -21,5 +23,16 @@ plt.ylabel('Samples')
 plt.hist(y, bins=20)
 plt.show()
 
+# House price outliers
+plt.figure(figsize=(10, 8), dpi=100)
+plt.title('House price outliers')
+plt.boxplot(y)
+plt.show()
+
+
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
+X_train.shape, X_test.shape, y_train.shape, y_test.shape
 
 
