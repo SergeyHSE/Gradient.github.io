@@ -29,6 +29,20 @@ plt.title('House price outliers')
 plt.boxplot(y)
 plt.show()
 
+# Find the median, quartile, interquartile regions
+
+q1 = np.quantile(y, 0.25)
+q3 = np.quantile(y, 0.75)
+med = np.median(y)
+iqr = q3-q1
+upper_bound = q3+(1.5*iqr) 
+lower_bound = q1-(1.5*iqr)
+print(iqr, upper_bound, lower_bound)
+
+outliers = y[(y <= lower_bound) | (y >= upper_bound)]
+print('Outliers:{}'.format(outliers))
+
+
 
 
 # Split data
