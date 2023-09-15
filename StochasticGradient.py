@@ -42,8 +42,12 @@ print(iqr, upper_bound, lower_bound)
 outliers = y[(y <= lower_bound) | (y >= upper_bound)]
 print('Outliers:{}'.format(outliers))
 
+y_without_outliers = y[(y <= lower_bound) | (y >= upper_bound)]
 
-
+plt.figure(figsize=(10, 8), dpi=100)
+plt.boxplot(y_without_outliers)
+plt.title('House price without outliers')
+plt.show()
 
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
