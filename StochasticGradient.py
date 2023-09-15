@@ -11,5 +11,15 @@ path = r"YourPath"
 path = path.replace('\\', '/')
 data = pd.read_csv(path)
 data.head()
-X = data[
+X = data.drop(['medv'], axis=1)
+y = data['madv']
+
+plt.figure(figsize(10, 8), dpi=100)
+plt.title('House price distribution')
+plt.xlabel('Price')
+plt.ylabel('Samples')
+plt.hist(y, bins=20)
+plt.show()
+
+
 
