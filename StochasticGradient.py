@@ -86,6 +86,10 @@ if os.path.exists(file_path):
 else:
     print(f"The file '{filename}' was not found in the current directory.")
 
+# Create correlation heatmap
+
+mask = np.zeros_like(corr, dtype=np.bool)
+mask[np.triu_indices_from(mask)] = True
 
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
