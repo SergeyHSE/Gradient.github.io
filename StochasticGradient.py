@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 import warnings
 from sklearn.base import BaseEstimator
 warnings.filterwarnings('ignore')
@@ -92,6 +93,13 @@ mask = np.zeros_like(corr, dtype=np.bool)
 mask[np.triu_indices_from(mask)] = True
 figure, ax = plt.subplots(figsize=(11, 9), dpi=100)
 cmap = sns.diverging_palette(220, 10, as_cmap=True)
+ax = sns.heatmap(corr, mask=mask, cmap=cmap, vmax=1, center=0,
+                 square=True, linewidths=.5, cbar_kws={"shrink": .7})
+ax.set_xticklabels(
+    ax.get_xticklabels(),
+    rotation=45,
+    horizontalalignment='right'
+    )
 
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
