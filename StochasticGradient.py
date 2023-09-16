@@ -74,6 +74,19 @@ plt.show()
 corr = X.corr()
 corr.to_csv('Correlation.csv')
 
+# Find the file in our directory
+
+import os
+
+current_directory = os.getcwd()
+filename = 'Correlation.csv'
+file_path = os.path.join(current_directory, filename)
+if os.path.exists(file_path):
+    print(f"The file '{filename}' is located at: {file_path}")
+else:
+    print(f"The file '{filename}' was not found in the current directory.")
+
+
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
 X_train.shape, X_test.shape, y_train.shape, y_test.shape
