@@ -90,6 +90,8 @@ else:
 
 mask = np.zeros_like(corr, dtype=np.bool)
 mask[np.triu_indices_from(mask)] = True
+figure, ax = plt.subplots(figsize=(11, 9), dpi=100)
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
 
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
