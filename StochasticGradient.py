@@ -50,7 +50,7 @@ plt.title('House price outliers')
 plt.boxplot(y)
 plt.show()
 
-# Find the median, quartile, interquartile regions
+# Find the median, quartile, interquartile regions (IQR)
 
 q1 = np.quantile(y, 0.25)
 q3 = np.quantile(y, 0.75)
@@ -69,6 +69,12 @@ plt.figure(figsize=(10, 8), dpi=100)
 plt.boxplot(y_without_outliers)
 plt.title('House price without outliers')
 plt.show()
+
+y.shape
+y_without_outliers.shape
+
+# Apply z-score method
+
 
 # Build hists for features
 
