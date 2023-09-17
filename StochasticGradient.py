@@ -189,4 +189,9 @@ strong multicollinearity or other numerical problems.
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
 X_train.shape, X_test.shape, y_train.shape, y_test.shape
 
+"""
+Let's write MAPE function and calculate it for y_test_mean
+"""
+
+
 
