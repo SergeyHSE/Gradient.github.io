@@ -193,5 +193,19 @@ X_train.shape, X_test.shape, y_train.shape, y_test.shape
 Let's write MAPE function and calculate it for y_test_mean
 """
 
+def MAPE(y_true, y_pred):
+    return np.mean(np.abs((y_true - y_pred) / y_true)) * 100
+
+# Calculate y_meen as an array of mean values
+type(y_test)
+y_meen = np.full_like(y_test, np.mean(y_test))
+len(y_test)
+
+# Calculate MAPE between y_test and y_meen
+mape = MAPE(y_test, y_meen)
+print("MAPE between y_test and y_mean:", mape)
+
+
+
 
 
