@@ -75,6 +75,13 @@ y_without_outliers.shape
 
 # Apply z-score method
 
+from scipy import stats
+
+z = np.abs(stats.zscore(y))
+data_z_score = y[(z < 3)]
+data_z_score.shape
+
+
 
 # Build hists for features
 
