@@ -81,7 +81,9 @@ z = np.abs(stats.zscore(y))
 data_z_score = y[(z < 3)]
 data_z_score.shape
 
-
+outlier_result_table = pd.DataFrame([[y.shape[0], y_without_outliers.shape[0], data_z_score.shape[0]]],
+                                    columns=['Initial data', 'IQR', 'Z-score'])
+print(outlier_result_table)
 
 # Build hists for features
 
