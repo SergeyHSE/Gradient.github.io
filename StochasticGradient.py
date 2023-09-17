@@ -136,6 +136,54 @@ ax.set_xticklabels(
     horizontalalignment='right'
 )
 
+# Buld OLS model to look at significance of features
+import statsmodels.api as sm
+
+X_reg = sm.add_constant(X)
+regression = sm.OLS(y, X_reg).fit()
+print(regression.summary())
+
+"""
+OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   medv   R-squared:                       0.741
+Model:                            OLS   Adj. R-squared:                  0.734
+Method:                 Least Squares   F-statistic:                     108.1
+Date:                Sun, 17 Sep 2023   Prob (F-statistic):          6.72e-135
+Time:                        21:45:24   Log-Likelihood:                -1498.8
+No. Observations:                 506   AIC:                             3026.
+Df Residuals:                     492   BIC:                             3085.
+Df Model:                          13                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         36.4595      5.103      7.144      0.000      26.432      46.487
+crim          -0.1080      0.033     -3.287      0.001      -0.173      -0.043
+zn             0.0464      0.014      3.382      0.001       0.019       0.073
+indus          0.0206      0.061      0.334      0.738      -0.100       0.141
+chas           2.6867      0.862      3.118      0.002       0.994       4.380
+nox          -17.7666      3.820     -4.651      0.000     -25.272     -10.262
+rm             3.8099      0.418      9.116      0.000       2.989       4.631
+age            0.0007      0.013      0.052      0.958      -0.025       0.027
+dis           -1.4756      0.199     -7.398      0.000      -1.867      -1.084
+rad            0.3060      0.066      4.613      0.000       0.176       0.436
+tax           -0.0123      0.004     -3.280      0.001      -0.020      -0.005
+ptratio       -0.9527      0.131     -7.283      0.000      -1.210      -0.696
+b              0.0093      0.003      3.467      0.001       0.004       0.015
+lstat         -0.5248      0.051    -10.347      0.000      -0.624      -0.425
+==============================================================================
+Omnibus:                      178.041   Durbin-Watson:                   1.078
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              783.126
+Skew:                           1.521   Prob(JB):                    8.84e-171
+Kurtosis:                       8.281   Cond. No.                     1.51e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.51e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
+"""
 
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
