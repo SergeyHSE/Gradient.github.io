@@ -205,6 +205,13 @@ len(y_test)
 mape = MAPE(y_test, y_meen)
 print("MAPE between y_test and y_mean:", mape)
 
+plt.figure(figsize=(6, 7), dpi=100)
+plt.bar(['MAPE'],[mape], color='green')
+plt.title('MAPE (y_mean)')
+plt.ylim(0, 100)
+plt.text(0, mape, f'{mape:.2f}', ha='center', va='bottom', fontsize=16, color='black')
+plt.show()
+
 
 
 
