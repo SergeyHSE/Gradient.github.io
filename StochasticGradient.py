@@ -253,3 +253,9 @@ def gradient_trajectory(X, y, w_history):
     plt.scatter(w_list[:, 0], w_list[:, 1])
     plt.plot(w_list[:, 0], w_list[:, 1])
     plt.show()
+
+n_features = len(list(X.columns))
+w_true = np.random.normal(0, 0.1, size=(n_features))
+w_0 = np.random.uniform(-2, 2, (n_features))
+
+
