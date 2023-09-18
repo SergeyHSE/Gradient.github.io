@@ -258,4 +258,12 @@ n_features = len(list(X.columns))
 w_true = np.random.normal(0, 0.1, size=(n_features))
 w_0 = np.random.uniform(-2, 2, (n_features))
 
+# Before applying function we should calculate zeros in our date
+
+check_data = data.drop(['zn', 'chas'], axis=1)
+zeros = 0
+for i in check_data.columns:
+    zeros += check_data[i][check_data[i] ==0].count()
+zeros
+
 
