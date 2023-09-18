@@ -230,3 +230,26 @@ fig.suptitle('Actual price vs Predict price: $y_i$ vs $\hat{y}_i$')
 ax1.legend(lines, labels, loc="lower left")
 plt.show()
 
+# Visualisation of gradient descent trajectory
+def gradient_trajectory(X, y, w_history):
+    A, B = np.meshgrid(np.linspace(-3, 3, 100), np.linspace(-3, 3, 100))
+    levels = np.empty_like(A)
+    for i in range(A.share[0]):
+        for j in range(A.shape[1]):
+            w_tmp = np.array([A[i, j], B[i, j]])
+            levels[i, j] = np.mean(np.power(np.dot(X, w_tmp) - y, 2))
+    plt.figure(figsize=(13, 9), dpi=100)
+    plt.title('Gradient trajectory')
+    plt.xlabel(r'$w_1$')
+    plt.ylabel(r'$w_2$')
+    plt.xlim((-2.1, 2.1))
+    plt.ylim((-2.1, 2.1))
+    
+    CS = plt.contour(A, B, levels, levels=np.logspace(0, 2, num=10), cmap=plt.cm.rainbow_r)
+    CB = plt.colorbar(CS, shrink=0.8, extend='both')
+    
+    w_list = np.array(lr.w_history)
+    plt.scatter(w_true[0], w_true[1], c='r', marker='*')
+    plt.scatter(w_list[:, 0], w_list[:, 1])
+    plt.plot(w_list[:, 0], w_list[:, 1])
+    plt.show()
