@@ -266,4 +266,21 @@ for i in check_data.columns:
     zeros += check_data[i][check_data[i] ==0].count()
 zeros
 
+####################################################
+                 code here
+####################################################
 
+
+lr = LinearRegression(w0=w_0)
+lr.fit(X_train, y_train)
+
+# have got Keyerror: 0
+# It means, that we should use np.array instead of DataFrame
+
+type(X)
+type(y)
+
+X_train, X_test, y_train, y_test = train_test_split(np.array(X), np.array(y), train_size=0.25, random_state=10)
+
+lr = LinearRegression(w0=w_0)
+lr.fit(X_train_ch, y_train_ch)
