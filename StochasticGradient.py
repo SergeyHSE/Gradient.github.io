@@ -212,7 +212,21 @@ plt.ylim(0, 100)
 plt.text(0, mape, f'{mape:.2f}', ha='center', va='bottom', fontsize=16, color='black')
 plt.show()
 
+# Let's build figure to look at dynamics of hte y_test relative to y_mean
 
-
-
+fig, ax1 = plt.subplots(figsize=(10, 8), dpi=120)
+ax1.set_xlabel('Count')
+ax1.set_ylabel('Predict price: $\hat{y}_i$')
+x = np.arange(len(y_meen))
+ax1.plot(x, y_meen, color='darkred', label='Predicted Price: $\hat{y}_i$')
+ax2 = ax1.twinx()
+ax2.plot(x, y_test, color='darkcyan', label='Actual Price: $y_i$')
+ax2.set_ylabel('Actual price: $y_i$')
+lines1, labels1 = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+lines = lines1 + lines2
+labels = labels1 + labels2
+fig.suptitle('Actual price vs Predict price: $y_i$ vs $\hat{y}_i$')
+ax1.legend(lines, labels, loc="lower left")
+plt.show()
 
