@@ -315,4 +315,6 @@ type(y)
 X_train, X_test, y_train, y_test = train_test_split(np.array(X), np.array(y), train_size=0.25, random_state=10)
 
 lr = LinearRegression(w0=w_0)
-lr.fit(X_train_ch, y_train_ch)
+lr.fit(X_train, y_train)
+w_history = np.array(lr.w_history)
+gradient_trajectory(X_train, y_train, w_history)
