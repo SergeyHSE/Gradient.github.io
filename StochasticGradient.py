@@ -318,3 +318,7 @@ lr = LinearRegression(w0=w_0)
 lr.fit(X_train, y_train)
 w_history = np.array(lr.w_history)
 gradient_trajectory(X_train, y_train, w_history)
+
+# We recieved wrong picture
+# Perhaps, we should scaling variables
+
