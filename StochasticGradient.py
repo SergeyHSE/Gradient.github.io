@@ -232,12 +232,6 @@ plt.show()
 
 # Visualisation of gradient descent trajectory
 def gradient_trajectory(X, y, w_history):
-    A, B = np.meshgrid(np.linspace(-3, 3, 100), np.linspace(-3, 3, 100))
-    levels = np.empty_like(A)
-    for i in range(A.share[0]):
-        for j in range(A.shape[1]):
-            w_tmp = np.array([A[i, j], B[i, j]])
-            levels[i, j] = np.mean(np.power(np.dot(X, w_tmp) - y, 2))
     plt.figure(figsize=(13, 9), dpi=100)
     plt.title('Gradient trajectory')
     plt.xlabel(r'$w_1$')
@@ -245,18 +239,37 @@ def gradient_trajectory(X, y, w_history):
     plt.xlim((-2.1, 2.1))
     plt.ylim((-2.1, 2.1))
     
-    CS = plt.contour(A, B, levels, levels=np.logspace(0, 2, num=10), cmap=plt.cm.rainbow_r)
+    A, B = np.meshgrid(np.linspace(-3, 3, 1000), np.linspace(-3, 3, 1000))  # Increase resolution
+    levels = np.empty_like(A)
+    
+    for i in range(A.shape[0]):
+        for j in range(A.shape[1]):
+            w_tmp = np.array([A[i, j], B[i, j]])
+            errors = []  # List to store errors for each weight vector in w_history
+            for w in w_history:
+                # Calculate predictions using the current weight vector
+                predictions = np.dot(X, w)
+                error = np.mean(np.power(predictions - y, 2))
+                errors.append(error)
+            levels[i, j] = np.mean(errors)
+    
+    CS = plt.contourf(A, B, levels, levels=np.logspace(0, 2, num=100), cmap=plt.cm.rainbow_r)  # Use contourf for filled contours
     CB = plt.colorbar(CS, shrink=0.8, extend='both')
     
-    w_list = np.array(lr.w_history)
-    plt.scatter(w_true[0], w_true[1], c='r', marker='*')
-    plt.scatter(w_list[:, 0], w_list[:, 1])
-    plt.plot(w_list[:, 0], w_list[:, 1])
+    w_list = np.array(w_history)
+    
+    # Plot the initial point
+    plt.scatter(w_list[0, 0], w_list[0, 1], c='r', marker='*', label='Initial Point')
+    
+    # Plot the trajectory
+    plt.scatter(w_list[:, 0], w_list[:, 1], c='b', marker='.', label='Trajectory', s=10)  # Adjust marker size
+    plt.plot(w_list[:, 0], w_list[:, 1], 'b--', label='Trajectory Line')
+    
+    # Plot the final point
+    plt.scatter(w_list[-1, 0], w_list[-1, 1], c='g', marker='x', label='Final Point')
+    
+    plt.legend()
     plt.show()
-
-n_features = len(list(X.columns))
-w_true = np.random.normal(0, 0.1, size=(n_features))
-w_0 = np.random.uniform(-2, 2, (n_features))
 
 # Before applying function we should calculate zeros in our date
 
@@ -271,8 +284,11 @@ zeros
 ####################################################
 
 
+# Usage
 lr = LinearRegression(w0=w_0)
 lr.fit(X_train, y_train)
+w_history = np.array(lr.w_history)
+gradient_trajectory(X_train, y_train, w_history)
 
 # have got Keyerror: 0
 # It means, that we should use np.array instead of DataFrame
