@@ -107,6 +107,22 @@ for i in range(num_plots):
 plt.tight_layout()
 plt.show()
 
+# Build scatter plots for each features
+
+fig, axes = plt.subplots(nrows=num_rows, ncols=num_cols, figsize=(10, 20), dpi=150)
+axes = axes.flatten()
+
+for i in range(num_plots):
+    if i < num_plots:
+        ax = axes[i]
+        feature_data = X[feature_names[i]]
+        ax.scatter(x=feature_data, y=y, marker='o')
+        ax.set_title(f'Scatter plot for {feature_names[i]}')
+    else:
+        fig.delaxes(axes[i])
+plt.tight_layout()
+plt.show()
+
 corr = X.corr()
 corr.to_csv('Correlation.csv')
 
