@@ -354,7 +354,25 @@ class LinearRegression(BaseEstimator):
             y_pred.append(np.dot(X[i], self.w))
 
         return np.array(y_pred)
-      
+
+    def calc_gradient(self, X, y):
+        """
+        X: np.array (l, d)
+        y: np.array (l)
+        ---
+        output: np.array (d)
+        """
+
+        l, d = X.shape
+        gradient = []
+
+        for j in range(d):
+            dQ = 0
+            for i in range(l):
+                dQ += (2/l) * X[i][j] * (np.dot(X[i], self.w) - y[i])
+            gradient.append(dQ)
+
+        return np.array(gradient)    
 ####################################################
 
 
