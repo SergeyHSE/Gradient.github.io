@@ -335,7 +335,26 @@ class LinearRegression(BaseEstimator):
             self.w = w_new
         print(len(self.w_history))
         return self
-           
+     
+    def predict(self, X):
+        """
+        X: np.array (l, d)
+        ---
+        output: np.array (l)
+        """
+
+        if self.w is None:
+            raise Exception('Not trained yet')
+
+        l, d = X.shape
+
+        y_pred = []
+
+        for i in range(l):
+            y_pred.append(np.dot(X[i], self.w))
+
+        return np.array(y_pred)
+      
 ####################################################
 
 
