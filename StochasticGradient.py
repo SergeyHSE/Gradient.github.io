@@ -33,7 +33,7 @@ path = path.replace('\\', '/')
 data = pd.read_csv(path)
 data.head()
 X = data.drop(['medv'], axis=1)
-y = data['madv']
+y = data['medv']
 
 #House prise distribution
 
