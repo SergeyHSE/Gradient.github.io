@@ -202,7 +202,7 @@ strong multicollinearity or other numerical problems.
 """
 
 # Split data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=10)
+X_train, X_test, y_train, y_test = train_test_split(np.array(X), np.array(y), test_size=0.25, random_state=10)
 X_train.shape, X_test.shape, y_train.shape, y_test.shape
 
 """
