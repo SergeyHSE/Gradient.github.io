@@ -361,7 +361,7 @@ ax.set_title('Gradient Trajectory (3D)')
 plt.show()
 
 # We recieved wrong picture
-# Perhaps, we should scaling variables
+# We should try scaling variables
 
 from sklearn.preprocessing import StandardScaler
 
@@ -370,3 +370,21 @@ scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 
+# Let's try do it for scaling data
+
+model = LinearRegression(epsilon=1e-4, max_steps=100, alpha=1e-4)
+model.fit(X_train, y_train)
+
+print("Updated Weights:")
+print(model.w)
+# Extract the weight history
+w_history = np.array(model.w_history)
+
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(w_history[:, 0], w_history[:, 1], w_history[:, 2], c='b', marker='o')
+ax.set_xlabel('Weight 1')
+ax.set_ylabel('Weight 2')
+ax.set_zlabel('Weight 3')
+ax.set_title('Gradient Trajectory (3D)')
+plt.show()
