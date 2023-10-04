@@ -375,6 +375,10 @@ class LinearRegression(BaseEstimator):
         return np.array(gradient)    
 ####################################################
 
+n_features = len(list(X.columns))
+w_true = np.random.normal(0, 0.1, size=(n_features))
+w_true.shape
+w_0 = np.random.uniform(-2, 2, (n_features))
 
 # Usage
 lr = LinearRegression(w0=w_0)
@@ -404,3 +408,4 @@ scaler = StandardScaler()
 scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
+
