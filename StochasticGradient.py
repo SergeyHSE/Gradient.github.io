@@ -394,10 +394,26 @@ type(y)
 
 X_train, X_test, y_train, y_test = train_test_split(np.array(X), np.array(y), train_size=0.25, random_state=10)
 
-lr = LinearRegression(w0=w_0)
-lr.fit(X_train, y_train)
-w_history = np.array(lr.w_history)
-gradient_trajectory(X_train, y_train, w_history)
+model = LinearRegression(epsilon=1e-4, max_steps=100, alpha=1e-4)
+
+# Train the model on your training data
+model.fit(X_train, y_train)
+
+print("Updated Weights:")
+print(model.w)
+# Extract the weight history
+w_history = np.array(model.w_history)
+
+# Now you can plot the gradient trajectory as previously shown
+# For 3D visualization (if applicable):
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(w_history[:, 0], w_history[:, 1], w_history[:, 2], c='b', marker='o')
+ax.set_xlabel('Weight 1')
+ax.set_ylabel('Weight 2')
+ax.set_zlabel('Weight 3')
+ax.set_title('Gradient Trajectory (3D)')
+plt.show()
 
 # We recieved wrong picture
 # Perhaps, we should scaling variables
