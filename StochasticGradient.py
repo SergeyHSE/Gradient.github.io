@@ -246,47 +246,6 @@ fig.suptitle('Actual price vs Predict price: $y_i$ vs $\hat{y}_i$')
 ax1.legend(lines, labels, loc="lower left")
 plt.show()
 
-# Visualisation of gradient descent trajectory
-def gradient_trajectory(X, y, w_history):
-    plt.figure(figsize=(13, 9), dpi=100)
-    plt.title('Gradient trajectory')
-    plt.xlabel(r'$w_1$')
-    plt.ylabel(r'$w_2$')
-    plt.xlim((-2.1, 2.1))
-    plt.ylim((-2.1, 2.1))
-    
-    A, B = np.meshgrid(np.linspace(-3, 3, 1000), np.linspace(-3, 3, 1000))  # Increase resolution
-    levels = np.empty_like(A)
-    
-    for i in range(A.shape[0]):
-        for j in range(A.shape[1]):
-            w_tmp = np.array([A[i, j], B[i, j]])
-            errors = []  # List to store errors for each weight vector in w_history
-            for w in w_history:
-                # Calculate predictions using the current weight vector
-                predictions = np.dot(X, w)
-                error = np.mean(np.power(predictions - y, 2))
-                errors.append(error)
-            levels[i, j] = np.mean(errors)
-    
-    CS = plt.contourf(A, B, levels, levels=np.logspace(0, 2, num=100), cmap=plt.cm.rainbow_r)  # Use contourf for filled contours
-    CB = plt.colorbar(CS, shrink=0.8, extend='both')
-    
-    w_list = np.array(w_history)
-    
-    # Plot the initial point
-    plt.scatter(w_list[0, 0], w_list[0, 1], c='r', marker='*', label='Initial Point')
-    
-    # Plot the trajectory
-    plt.scatter(w_list[:, 0], w_list[:, 1], c='b', marker='.', label='Trajectory', s=10)  # Adjust marker size
-    plt.plot(w_list[:, 0], w_list[:, 1], 'b--', label='Trajectory Line')
-    
-    # Plot the final point
-    plt.scatter(w_list[-1, 0], w_list[-1, 1], c='g', marker='x', label='Final Point')
-    
-    plt.legend()
-    plt.show()
-
 # Before applying function we should calculate zeros in our date
 
 check_data = data.drop(['zn', 'chas'], axis=1)
