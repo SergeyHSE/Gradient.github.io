@@ -37,7 +37,7 @@ y = data['medv']
 
 #House prise distribution
 
-plt.figure(figsize(10, 8), dpi=100)
+plt.figure(figsize=(10, 8), dpi=100)
 plt.title('House price distribution')
 plt.xlabel('Price')
 plt.ylabel('Samples')
