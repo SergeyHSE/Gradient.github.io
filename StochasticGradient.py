@@ -339,20 +339,6 @@ w_true = np.random.normal(0, 0.1, size=(n_features))
 w_true.shape
 w_0 = np.random.uniform(-2, 2, (n_features))
 
-# Usage
-lr = LinearRegression(w0=w_0)
-lr.fit(X_train, y_train)
-w_history = np.array(lr.w_history)
-gradient_trajectory(X_train, y_train, w_history)
-
-# have got Keyerror: 0
-# It means, that we should use np.array instead of DataFrame
-
-type(X)
-type(y)
-
-X_train, X_test, y_train, y_test = train_test_split(np.array(X), np.array(y), train_size=0.25, random_state=10)
-
 model = LinearRegression(epsilon=1e-4, max_steps=100, alpha=1e-4)
 
 # Train the model on your training data
