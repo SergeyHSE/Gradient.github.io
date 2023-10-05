@@ -422,5 +422,13 @@ class LinearRegressionSGD(BaseEstimator):
         
         if self.w0 is None:
             self.w0 = np.zeros(d)
-        self.w = self.w0
-        
+        self.w = self.w0 
+      
+        for step in range(self.max_step):
+            self.w_history.append(self.w)
+            w_new = self.w - self.alpha * self.calc_gradient(X, y)
+            
+            if np.linalg.norm(w_new-self.w) < self.epsilon:
+                break
+            
+            self.w = w_new
