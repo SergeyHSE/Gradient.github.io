@@ -410,3 +410,17 @@ class LinearRegressionSGD(BaseEstimator):
         self.alpha = alpha
         self.w = None
         self.w_history = []
+    def fit(self, X, y):
+        """
+        X: np.array (l, d)
+        y: np.array (l)
+        ---
+        output: self
+        """
+        
+        l, d = X.shape
+        
+        if self.w0 is None:
+            self.w0 = np.zeros(d)
+        self.w = self.w0
+        
