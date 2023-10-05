@@ -392,3 +392,19 @@ ax.set_ylabel('Weight 2')
 ax.set_zlabel('Weight 3')
 ax.set_title('Gradient Trajectory (3D)')
 plt.show()
+
+##############################################
+class LinearRegressionSGD(BaseEstimator):
+    def __init__(self, epsilon=1e-4, max_steps=100, w0=None, alpha=1e-4):
+        """
+        epsilon: разница для нормы изменения весов
+        max_steps: максимальное количество шагов в градиентном спуске
+        w0: np.array (d,) - начальные веса
+        alpha: шаг обучения
+        """
+        self.epsilon = epsilon
+        self.max_steps = max_steps
+        self.w0 = w0
+        self.alpha = alpha
+        self.w = None
+        self.w_history = []
