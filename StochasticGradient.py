@@ -363,12 +363,13 @@ plt.show()
 # We recieved wrong picture
 # We should try scaling variables
 
-from sklearn.preprocessing import StandardScaler
+# Let's try write scalling function 
 
-scaler = StandardScaler()
-scaler.fit(X_train)
-X_train = scaler.transform(X_train)
-X_test = scaler.transform(X_test)
+def Scaller(X):
+    mean = np.mean(X, axis=0)
+    std = np.std(X, axis=0)
+    X = (X - mean) / std
+    return X
 
 # Let's try do it for scaling data
 
