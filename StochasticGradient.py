@@ -370,6 +370,9 @@ def Scaller(X):
     std = np.std(X, axis=0)
     X = (X - mean) / std
     return X
+  
+X_train = Scaller(X_train)
+X_test = Scaller(X_test)
 
 # Let's try do it for scaling data
 
