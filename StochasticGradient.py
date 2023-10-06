@@ -397,7 +397,7 @@ plt.show()
 
 ##############################################
 class LinearRegressionSGD(BaseEstimator):
-    def __init__(self, epsilon=1e-4, max_steps=100, w0=None, alpha=1e-4):
+    def __init__(self, epsilon=1e-4, max_steps=100, w0=None, alpha=1e-4, batch_sze=32):
         """
         epsilon: difference for the rate of change in weights
         max_steps: maximum number of steps in gradient descent
@@ -410,7 +410,9 @@ class LinearRegressionSGD(BaseEstimator):
         self.alpha = alpha
         self.w = None
         self.w_history = []
-    def fit(self, X, y):
+        self.batch_size = batch_size
+    
+  def fit(self, X, y):
         """
         X: np.array (l, d)
         y: np.array (l)
@@ -426,6 +428,10 @@ class LinearRegressionSGD(BaseEstimator):
       
         for step in range(self.max_step):
             self.w_history.append(self.w)
+          
+            random_batch_ids = np.random.choice(n, size=self.batch_size, replace=False)
+            X_batch = X[random_batch_ids]
+            Y_batch = Y[random_batch_ids]        
             w_new = self.w - self.alpha * self.calc_gradient(X, y)
             
             if np.linalg.norm(w_new-self.w) < self.epsilon:
