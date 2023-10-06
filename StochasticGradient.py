@@ -432,13 +432,25 @@ class LinearRegressionSGD(BaseEstimator):
         for step in range(self.max_step):
             
             self.w_history.append(self.w)
-          
-            random_batch_ids = np.random.choice(l, size=self.batch_size, replace=False)
-            X_batch = X[random_batch_ids]
-            Y_batch = Y[random_batch_ids]        
+                 
             w_new = self.w - self.alpha * self.calc_gradient(X, y)
             
             if np.linalg.norm(w_new-self.w) < self.epsilon:
                 break
             
             self.w = w_new
+
+    def calc_gradient(self, X, y):
+        """
+        X: np.array (l, d)
+        y: np.array (l)
+        ---
+        output: np.array (d)
+        """
+                    
+        random_batch_ids = np.random.choice(l, size=self.batch_size, replace=False)
+        X_batch = X[random_batch_ids]
+        Y_batch = Y[random_batch_ids]
+
+
+        return gradient
