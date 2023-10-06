@@ -447,6 +447,8 @@ class LinearRegressionSGD(BaseEstimator):
         ---
         output: np.array (d)
         """
+        l, d = X.shape
+        gradient = []
                     
         random_batch_ids = np.random.choice(l, size=self.batch_size, replace=False)
         X_batch = X[random_batch_ids]
