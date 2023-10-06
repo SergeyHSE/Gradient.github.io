@@ -393,6 +393,9 @@ ax.set_zlabel('Weight 3')
 ax.set_title('Gradient Trajectory (3D)')
 plt.show()
 
+y_pred_lr = model.predict(X_train, y_train)
+mape_lr = MAPE(y_test, y_pred_lr)
+
 # Now we should write stochastic gradient descent class
 
 ##############################################
@@ -427,6 +430,7 @@ class LinearRegressionSGD(BaseEstimator):
         self.w = self.w0 
       
         for step in range(self.max_step):
+            
             self.w_history.append(self.w)
           
             random_batch_ids = np.random.choice(n, size=self.batch_size, replace=False)
