@@ -457,7 +457,8 @@ class LinearRegressionSGD(BaseEstimator):
         for j in range(d):
             dQ = 0
             for i in range(self.batch_size):
-                dQ = 2/self.batch_size
+                dQ = 2/self.batch_size * X_batch[i, j] * (np.dot(X_batch[i], self.w) - Y_batch)
+                
 
 
         return gradient
