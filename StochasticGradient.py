@@ -464,12 +464,8 @@ class LinearRegressionSGD(BaseEstimator):
         """
         if self.w is None:
             raise Exception('Not trained yet')
-            
-        l, d = X.shape
-        y_pred = []
-        
-        for i in range(l):
-            y_pred.append(np.dot(X[i], self.w))
+                    
+        y_pred = np.dot(X, self.w))
 
         return y_pred
 
