@@ -452,13 +452,14 @@ class LinearRegressionSGD(BaseEstimator):
                     
         random_batch_ids = np.random.choice(l, size=self.batch_size, replace=False)
         X_batch = X[random_batch_ids]
-        Y_batch = Y[random_batch_ids]
+        y_batch = y[random_batch_ids]
         
         for j in range(d):
             dQ = 0
             for i in range(self.batch_size):
-                dQ = 2/self.batch_size * X_batch[i, j] * (np.dot(X_batch[i], self.w) - Y_batch)
+                dQ = 2/self.batch_size * X_batch[i, j] * (np.dot(X_batch[i], self.w) - y_batch[i])
                 
+            gradient.append(dQ)
 
 
         return gradient
