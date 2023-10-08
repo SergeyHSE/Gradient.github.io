@@ -474,5 +474,11 @@ class LinearRegressionSGD(BaseEstimator):
             raise Exception('Not trained yet')
             
         l, d = X.shape
+        y_pred = []
+        
+        for i in range(l):
+            y_pred.append(np.dot(X[i], self.w))
+
+        return y_pred
 
         return y_pred
