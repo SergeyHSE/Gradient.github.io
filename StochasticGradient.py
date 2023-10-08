@@ -448,20 +448,12 @@ class LinearRegressionSGD(BaseEstimator):
         output: np.array (d)
         """
         l, d = X.shape
-        gradient = []
-                    
-        random_batch_ids = np.random.choice(l, size=self.batch_size, replace=False)
-        X_batch = X[random_batch_ids]
-        y_batch = y[random_batch_ids]
+        gradient = np.zeros(d)
         
-        for j in range(d):
-            dQ = 0
-            for i in range(self.batch_size):
-                dQ = 2/self.batch_size * X_batch[i, j] * (np.dot(X_batch[i], self.w) - y_batch[i])
-                
-            gradient.append(dQ)
-
-
+        for i in range(l):
+            error = (np.dot(X[i], self.w) - y[i])
+            gradient += 2 * X[i] * error
+            
         return gradient
       
     def predict(self, X):
@@ -481,4 +473,3 @@ class LinearRegressionSGD(BaseEstimator):
 
         return y_pred
 
-        return y_pred
