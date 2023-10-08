@@ -463,3 +463,16 @@ class LinearRegressionSGD(BaseEstimator):
 
 
         return gradient
+      
+    def predict(self, X):
+        """
+        X: np.array (l, d)
+        ---
+        output: np.array (l)
+        """
+        if self.w is None:
+            raise Exception('Not trained yet')
+            
+        l, d = X.shape
+
+        return y_pred
