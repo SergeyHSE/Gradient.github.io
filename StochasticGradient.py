@@ -415,7 +415,7 @@ class LinearRegressionSGD(BaseEstimator):
         self.w_history = []
         self.batch_size = batch_size
     
-  def fit(self, X, y):
+    def fit(self, X, y):
         """
         X: np.array (l, d)
         y: np.array (l)
@@ -427,18 +427,32 @@ class LinearRegressionSGD(BaseEstimator):
         
         if self.w0 is None:
             self.w0 = np.zeros(d)
-        self.w = self.w0 
-      
+        self.w = self.w0
+        
         for step in range(self.max_step):
-            
             self.w_history.append(self.w)
-                 
-            w_new = self.w - self.alpha * self.calc_gradient(X, y)
+            
+            #Shuffle the data for stochasticity
+            indices = np.arange(l)
+            np.random.shuffle(indices)
+            X_shuffled = X[indices]
+            y_shuffled = y[indices]
+            
+            for i in range(0, l, self.batch_size):
+                X_batch = X_shuffled[i:i+self.batch_size]
+                y_batch = y_shuffled[i:i+self.batch_size]
+                
+                gradient = self.calc_gradient(X_batch, y_batch)
+            
+                self.w = self.alpha * gradient
             
             if np.linalg.norm(w_new-self.w) < self.epsilon:
                 break
             
             self.w = w_new
+        ## На каждом шаге градиентного спуска веса необходимо добавлять в w_history
+
+        return self
 
     def calc_gradient(self, X, y):
         """
