@@ -260,13 +260,17 @@ fig.suptitle('Actual price vs Predict price: $y_i$ vs $\hat{y}_i$')
 ax1.legend(lines, labels, loc="lower left")
 plt.show()
 
-# Before applying function we should calculate zeros in our date
+# Before applying function we should calculate zeros and nun in our date
+
+data.isnull().any()
 
 check_data = data.drop(['zn', 'chas'], axis=1)
 zeros = 0
 for i in check_data.columns:
     zeros += check_data[i][check_data[i] ==0].count()
 zeros
+
+data.isna().any()
 
 ####################################################
 class LinearRegression(BaseEstimator):
