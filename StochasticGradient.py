@@ -152,6 +152,11 @@ ax.set_xticklabels(
     horizontalalignment='right'
 )
 
+plt.figure(figsize=(11, 9), dpi=100)
+sns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation matrix')
+plt.show()
+
 # Buld OLS model to look at significance of features
 import statsmodels.api as sm
 
