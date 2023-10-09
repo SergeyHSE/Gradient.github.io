@@ -157,6 +157,15 @@ sns.heatmap(corr, annot=True, cmap='coolwarm', fmt='.2f')
 plt.title('Correlation matrix')
 plt.show()
 
+#Build outliers boxplots for every features
+
+data_to_plot = X
+
+plt.figure(figsize=(11, 11), dpi=100)
+sns.boxplot(data=data_to_plot, orient='h', palette='Set2')
+plt.title('Outliers for every features')
+plt.show()
+
 # Buld OLS model to look at significance of features
 import statsmodels.api as sm
 
