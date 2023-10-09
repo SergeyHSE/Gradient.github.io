@@ -498,3 +498,8 @@ class LinearRegressionSGD(BaseEstimator):
 
         return y_pred
 
+model_sgd = LinearRegressionSGD()
+model_sgd.fit(X_train, y_train)
+y_pred_sgd = model_sgd.predict(X_test)
+mape_sgd = MAPE(y_test, y_pred_sgd)
+mape_sgd
