@@ -324,14 +324,9 @@ class LinearRegression(BaseEstimator):
         if self.w is None:
             raise Exception('Not trained yet')
 
-        l, d = X.shape
+        y_pred = np.dot(X, self.w[1:]) + self.w[0]
 
-        y_pred = []
-
-        for i in range(l):
-            y_pred.append(np.dot(X[i], self.w))
-
-        return np.array(y_pred)
+        return y_pred
 
     def calc_gradient(self, X, y):
         """
