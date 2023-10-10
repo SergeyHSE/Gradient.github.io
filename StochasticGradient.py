@@ -452,10 +452,10 @@ class LinearRegressionSGD(BaseEstimator):
         l, d = X.shape
         
         if self.w0 is None:
-            self.w0 = np.zeros(d)
+            self.w0 = np.zeros(d + 1)
         self.w = self.w0
         
-        for step in range(self.max_step):
+        for step in range(self.max_steps):
             self.w_history.append(self.w.copy())
             
             #Shuffle the data for stochasticity
