@@ -216,6 +216,17 @@ Notes:
 strong multicollinearity or other numerical problems.
 """
 
+# Check heteroscedasticity
+
+from statsmodels.sandbox.regression.predstd import wls_prediction_std
+from statsmodels.stats.diagnostic import het_white
+
+test_white = het_white(results.resid, exog=results.model.exog)
+print('LM:', test_white[0])
+print('p-value(LM):', test_white[1])
+print('F:', test_white[2])
+print('p-value(F)', test_white[3])
+
 # Split data
 X_train, X_test, y_train, y_test = train_test_split(np.array(X), np.array(y), test_size=0.25, random_state=10)
 X_train.shape, X_test.shape, y_train.shape, y_test.shape
