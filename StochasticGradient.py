@@ -485,11 +485,12 @@ class LinearRegressionSGD(BaseEstimator):
         output: np.array (d)
         """
         l, d = X.shape
-        gradient = np.zeros(d)
+        gradient = np.zeros(d + 1)
         
         for i in range(l):
-            error = (np.dot(X[i], self.w) - y[i])
-            gradient += 2 * X[i] * error
+            error = (np.dot(X[i], self.w[1:]) + self.w[0] - y[i])
+            gradient[1:] += 2 * X[i] * error
+            gradient[0] += 2 * error
             
         return gradient
       
