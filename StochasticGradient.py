@@ -170,8 +170,9 @@ plt.show()
 import statsmodels.api as sm
 
 X_reg = sm.add_constant(X)
-regression = sm.OLS(y, X_reg).fit()
-print(regression.summary())
+regression = sm.OLS(y, X_reg)
+results = regression.fit()
+print(results.summary())
 
 """
 OLS Regression Results                            
