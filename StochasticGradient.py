@@ -287,7 +287,8 @@ class LinearRegression(BaseEstimator):
         self.alpha = alpha
         self.w = None
         self.w_history = []
-   def fit(self, X, y):
+      
+    def fit(self, X, y):
         """
         X: np.array (l, d)
         y: np.array (l)
@@ -295,9 +296,9 @@ class LinearRegression(BaseEstimator):
         output: self
         """
         l, d = X.shape
-
+        
         if self.w0 is None:
-            self.w0 = np.zeros(d)
+            self.w0 = np.zeros(d + 1)
 
         self.w = self.w0
 
@@ -310,7 +311,7 @@ class LinearRegression(BaseEstimator):
                 break
 
             self.w = w_new
-        print(len(self.w_history))
+
         return self
      
     def predict(self, X):
