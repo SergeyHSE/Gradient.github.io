@@ -337,15 +337,15 @@ class LinearRegression(BaseEstimator):
         """
 
         l, d = X.shape
-        gradient = []
+        gradient = np.zeros(d + 1)
 
-        for j in range(d):
-            dQ = 0
-            for i in range(l):
-                dQ += (2/l) * X[i][j] * (np.dot(X[i], self.w) - y[i])
-            gradient.append(dQ)
+        for i in range(l):
+            error = (np.dot(X[i], self.w[1:]) + self.w[0] - y[i])
+            gradient[1:] += (2/l) * X[i] * error
+            gradient[0] += 2/l * error
+            
+        return gradient
 
-        return np.array(gradient)    
 ####################################################
 
 n_features = len(list(X.columns))
