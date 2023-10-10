@@ -502,7 +502,7 @@ class LinearRegressionSGD(BaseEstimator):
         if self.w is None:
             raise Exception('Not trained yet')
                     
-        y_pred = np.dot(X, self.w))
+        y_pred = np.dot(X, self.w[1:]) + self.w[0]
 
         return y_pred
 
