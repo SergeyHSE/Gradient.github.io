@@ -571,3 +571,16 @@ mape_sgd
                 break
             
         return self
+      
+    def predict(self, X):
+        """
+        X: np.array (l, d)
+        ---
+        output: np.array (l)
+        """
+        if self.w is None:
+            raise Exception('Not trained yet')
+                    
+        y_pred = np.dot(X, self.w[1:]) + self.w[0]
+
+        return y_pred
