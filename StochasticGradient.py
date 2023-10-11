@@ -533,3 +533,41 @@ class LinearRegressionSGDRidge(BaseEstimator):
         self.gamma = gamma
 mape_sgd = MAPE(y_test, y_pred_sgd)
 mape_sgd
+
+    def fit(self, X, y):
+        """
+        X: np.array (l, d)
+        y: np.array (l)
+        ---
+        output: self
+        """
+        
+        l, d = X.shape
+        
+        if self.w0 is None:
+            self.w0 = np.zeros(d + 1)
+        self.w = self.w0
+        
+        for step in range(self.max_steps):
+            self.w_history.append(self.w.copy())
+            
+            #Shuffle the data for stochasticity
+            indices = np.arange(l)
+            np.random.shuffle(indices)
+            X_shuffled = X[indices]
+            y_shuffled = y[indices]
+            
+            for i in range(0, l, self.batch_size):
+                X_batch = X_shuffled[i:i+self.batch_size]
+                y_batch = y_shuffled[i:i+self.batch_size]
+                
+                gradient = self.calc_gradient(X_batch, y_batch)
+            
+                self.w -= self.alpha * gradient
+                
+            self.w[1:] -= self.alpha * self.gamma * self.w[1:]
+            
+            if np.linalg.norm(self.w_history[-1] - self.w) < self.epsilon:
+                break
+            
+        return self
