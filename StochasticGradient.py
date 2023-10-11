@@ -601,9 +601,30 @@ mape_sgd
             gradient[0] += 2 * error
             
         return gradient
+###################################################################
 
 model_SGD_ridge = LinearRegressionSGDRidge(gamma=1, max_steps=1000)
 model_SGD_ridge.fit(X_train, y_train)
 y_pred_ridge = model_SGD_ridge.predict(X_test)
 mape_ridge = MAPE(y_test, y_pred_ridge)
 mape_ridge
+
+##################################################################
+#                 LR GD Vectorized with regularization           #
+##################################################################
+
+class LinearRegressionVectorized(BaseEstimator):
+     def __init__(self, epsilon=1e-4, max_steps=100, w0=None, alpha=1e-4, gamma=0):
+         """
+         epsilon: разница для нормы изменения весов 
+         max_steps: максимальное количество шагов в градиентном спуске
+         w0: np.array (d,) - начальные веса
+         alpha: шаг обучения
+         """
+         self.epsilon = epsilon
+         self.max_steps = max_steps
+         self.w0 = w0
+         self.alpha = alpha
+         self.w = None
+         self.w_history = []
+         self.gamma = gamma
