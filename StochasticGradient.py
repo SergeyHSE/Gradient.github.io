@@ -601,3 +601,9 @@ mape_sgd
             gradient[0] += 2 * error
             
         return gradient
+
+model_SGD_ridge = LinearRegressionSGDRidge(gamma=1, max_steps=1000)
+model_SGD_ridge.fit(X_train, y_train)
+y_pred_ridge = model_SGD_ridge.predict(X_test)
+mape_ridge = MAPE(y_test, y_pred_ridge)
+mape_ridge
