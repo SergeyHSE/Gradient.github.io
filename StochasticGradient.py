@@ -510,5 +510,26 @@ class LinearRegressionSGD(BaseEstimator):
 model_sgd = LinearRegressionSGD()
 model_sgd.fit(X_train, y_train)
 y_pred_sgd = model_sgd.predict(X_test)
+
+##################################################################
+#                  SGD LR with regularisation                    #
+##################################################################
+
+class LinearRegressionSGDRidge(BaseEstimator):
+    def __init__(self, epsilon=1e-4, max_steps=100, w0=None, alpha=1e-4, batch_size=32, gamma=0):
+        """
+        epsilon: difference for the rate of change in weights
+        max_steps: maximum number of steps in gradient descent
+        w0: np.array (d,) - starting weights
+        alpha: learning rate
+        """
+        self.epsilon = epsilon
+        self.max_steps = max_steps
+        self.w0 = w0
+        self.alpha = alpha
+        self.w = None
+        self.w_history = []
+        self.batch_size = batch_size
+        self.gamma = gamma
 mape_sgd = MAPE(y_test, y_pred_sgd)
 mape_sgd
