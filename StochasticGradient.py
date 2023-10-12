@@ -510,6 +510,14 @@ class LinearRegressionSGD(BaseEstimator):
 model_sgd = LinearRegressionSGD()
 model_sgd.fit(X_train, y_train)
 y_pred_sgd = model_sgd.predict(X_test)
+mape_sgd = MAPE(y_test, y_pred_sgd)
+mape_sgd
+
+# Again build graphic for outliers
+type(X_train)
+X_train_column = pd.DataFrame(data=X_train, columns=X.columns)
+X_train_column.head()
+data_to_plot = X_train_column
 
 ##################################################################
 #                  SGD LR with regularisation                    #
