@@ -686,3 +686,18 @@ class LinearRegressionVectorized(BaseEstimator):
 
         return y_pred
       
+    def calc_gradient(self, X, y):
+        """
+        X: np.array (l, d)
+        y: np.array (l)
+        ---
+        output: np.array (d)
+        """
+        l, d = X.shape
+        gradient = np.zeros(d + 1)
+                  
+        error = np.dot(X, self.w[1:]) + self.w[0] - y
+        gradient[1:] = (2/l) * np.dot(X.T, error)
+        gradient[0] += (2/l) * np.sum(error)
+        
+        return gradient
