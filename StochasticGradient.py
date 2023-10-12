@@ -519,6 +519,13 @@ X_train_column = pd.DataFrame(data=X_train, columns=X.columns)
 X_train_column.head()
 data_to_plot = X_train_column
 
+plt.figure(figsize=(11, 11), dpi=100)
+sns.boxplot(data_to_plot, orient='h', palette='Set2')
+plt.title('Outliers after scalling')
+plt.show()
+
+# Now we should write class SGD with regularization
+
 ##################################################################
 #                  SGD LR with regularisation                    #
 ##################################################################
@@ -624,10 +631,10 @@ mape_ridge
 class LinearRegressionVectorized(BaseEstimator):
      def __init__(self, epsilon=1e-4, max_steps=100, w0=None, alpha=1e-4, gamma=0):
          """
-         epsilon: разница для нормы изменения весов 
-         max_steps: максимальное количество шагов в градиентном спуске
-         w0: np.array (d,) - начальные веса
-         alpha: шаг обучения
+         epsilon: difference for the rate of change in weights
+         max_steps: maximum number of steps in gradient descent
+         w0: np.array (d,) - starting weights
+         alpha: learning rate
          """
          self.epsilon = epsilon
          self.max_steps = max_steps
