@@ -624,6 +624,8 @@ y_pred_ridge = model_SGD_ridge.predict(X_test)
 mape_ridge = MAPE(y_test, y_pred_ridge)
 mape_ridge
 
+# And finaly we should write class GD LR Vectorized with regularization
+
 ##################################################################
 #                 LR GD Vectorized with regularization           #
 ##################################################################
@@ -643,3 +645,30 @@ class LinearRegressionVectorized(BaseEstimator):
          self.w = None
          self.w_history = []
          self.gamma = gamma
+       
+    def fit(self, X, y):
+        """
+        X: np.array (l, d)
+        y: np.array (l)
+        ---
+        output: self
+        """
+        l, d = X.shape
+        if self.w0 is None:
+            self.w0 = np.zeros(d + 1)
+        self.w = self.w0
+            
+        for step in range(self.max_steps):
+            self.w_history.append(self.w)
+                
+            gradient = self.calc_gradient(X, y)
+
+            self.w -= self.alpha * gradient
+
+            # Correct the indentation of the L2 regularization update
+            self.w[1:] -= self.alpha * self.gamma * self.w[1:]
+
+            if np.linalg.norm(self.w_history[-1] - self.w) < self.epsilon:
+                break
+
+        return self
