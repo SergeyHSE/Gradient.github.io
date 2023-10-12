@@ -701,3 +701,8 @@ class LinearRegressionVectorized(BaseEstimator):
         gradient[0] += (2/l) * np.sum(error)
         
         return gradient
+
+lr_vector = LinearRegressionVectorized(gamma=10, max_steps=100)
+lr_vector.fit(X_train, y_train)
+y_pred_vector = lr_vector.predict(X_test)
+MAPE(y_test, y_pred_vector)
