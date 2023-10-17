@@ -73,3 +73,9 @@ dataset['DESCR'].split('\n')[11:68]
  '    fractal dimension (worst):            0.055  0.208',
  '    ===================================== ====== ======',
 """
+
+X, Y = dataset['data'], dataset['target']
+
+X_train, X_test, Y_train, Y_test = train_test_split(
+    X, Y, test_size=0.2, random_state=42)
+X_train.shape, X_test.shape, Y_train.shape, Y_test.shape
