@@ -13,19 +13,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.base import ClassifierMixin
 
 dataset = load_breast_cancer()
-dataset['DESCR'].split('\n')
+dataset['DESCR'].split('\n')[11:68]
 """
-['.. _breast_cancer_dataset:',
- '',
- 'Breast cancer wisconsin (diagnostic) dataset',
- '--------------------------------------------',
- '',
- '**Data Set Characteristics:**',
- '',
- '    :Number of Instances: 569',
- '',
- '    :Number of Attributes: 30 numeric, predictive attributes and the class',
- '',
  '    :Attribute Information:',
  '        - radius (mean of distances from center to points on the perimeter)',
  '        - texture (standard deviation of gray-scale values)',
