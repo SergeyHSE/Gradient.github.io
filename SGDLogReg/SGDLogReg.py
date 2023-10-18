@@ -139,3 +139,23 @@ class LogisticRegressionCustom(ClassifierMixin):
             grad += 2 * self.alpha * self.weights
             self.weights -= self.lr * grad
             self.intercept_ -= self.lr * np.mean(Y_batch - predictions)
+
+        return self
+
+    def predict(self, X):
+
+        if self.fit_intercept:
+            X_copy = self._add_intercept(X)
+        else:
+            X_copy = X.copy()
+
+        # check that number of features in X_copy is iqual number of coef
+        assert X_copy.shape[1] == self.weights.shape[0]
+
+        # Calculate predictions by sigmoid function
+        predictions = self._sigmoid(X_copy.dot(self.weights) + self.intercept_)
+
+        # Convert predictuons to binary values (0 or 1)
+        binary_predictions = np.round(predictions).astype(int)
+
+        return binary_predictions
