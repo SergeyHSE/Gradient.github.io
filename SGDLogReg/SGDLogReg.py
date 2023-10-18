@@ -159,3 +159,18 @@ class LogisticRegressionCustom(ClassifierMixin):
         binary_predictions = np.round(predictions).astype(int)
 
         return binary_predictions
+
+    def predict_proba(self, X):
+
+        if self.fit_intercept:
+            X_copy = self._add_intercept(X)
+        else:
+            X_copy = X.copy()
+         
+        assert X_copy.shape[1] == self.weights.shape[0]
+
+        predictions = self._sigmoid(X_copy.dot(self.weights) + self.intercept_)
+
+        prob_predictions = np.column_stack((1 - predictions, predictions))
+
+        return prob_predictions
