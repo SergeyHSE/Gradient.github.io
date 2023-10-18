@@ -127,3 +127,15 @@ class LogisticRegressionCustom(ClassifierMixin):
         self.weights = np.zeros(X_copy.shape[1])
         #self.weights = np.random.uniform(-1, 1, size=X_copy.shape[1])
         self.intercept_ = 0.0
+
+        for iteration in range(int(self.max_iter)):
+            # Choise mini_batch 
+            indices = np.random.choice(X_copy.shape[0], self.batch_size, replace=False)
+            X_batch = X_copy[indices]
+            Y_batch = Y[indices]
+
+            predictions = self._sigmoid(X_batch.dot(self.weights) + self.intercept_)
+            grad = -X_batch.T.dot(Y_batch - predictions) / X_batch.shape[0]
+            grad += 2 * self.alpha * self.weights
+            self.weights -= self.lr * grad
+            self.intercept_ -= self.lr * np.mean(Y_batch - predictions)
