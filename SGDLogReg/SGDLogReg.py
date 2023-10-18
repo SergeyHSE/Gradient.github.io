@@ -87,3 +87,16 @@ scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 
+class LogisticRegressionCustom(ClassifierMixin):
+    def __init__(self, alpha=0, lr=0.5, max_iter=1e5, fit_intercept=True, batch_size = 32):
+        self.alpha = alpha
+        self.lr = lr
+        self.max_iter = max_iter
+        self.fit_intercept = fit_intercept
+        self.batch_size = batch_size
+        self.classes_ = np.array([0, 1])
+
+    @staticmethod
+    def _sigmoid(x):
+        # use scipy.special.expit for calculating sigmoid function
+        return expit(x)
