@@ -100,3 +100,14 @@ class LogisticRegressionCustom(ClassifierMixin):
     def _sigmoid(x):
         # use scipy.special.expit for calculating sigmoid function
         return expit(x)
+     
+    def _add_intercept(self, X):
+        '''
+        Add intersept coef 
+        :param X: initial matrix
+        '''
+
+        X_copy = np.full((X.shape[0], X.shape[1] + 1), fill_value=1.)
+        X_copy[:, :-1] = X
+
+        return X_copy
