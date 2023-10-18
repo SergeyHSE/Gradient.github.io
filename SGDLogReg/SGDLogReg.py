@@ -111,3 +111,19 @@ class LogisticRegressionCustom(ClassifierMixin):
         X_copy[:, :-1] = X
 
         return X_copy
+
+    def fit(self, X, Y):
+
+        assert X.shape[0] == Y.shape[0]
+
+        if self.fit_intercept:  # добавляем свободный коэфициент
+            X_copy = self._add_intercept(X)
+        else:
+            X_copy = X.copy()
+            
+        self.classes_ = np.array([0, 1])
+        
+        # Initialize weights and intercept
+        self.weights = np.zeros(X_copy.shape[1])
+        #self.weights = np.random.uniform(-1, 1, size=X_copy.shape[1])
+        self.intercept_ = 0.0
