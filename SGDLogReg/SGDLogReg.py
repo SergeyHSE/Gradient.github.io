@@ -87,6 +87,10 @@ scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 
+####################################################
+#                 SGD LOG REG                      #
+####################################################
+
 class LogisticRegressionCustom(ClassifierMixin):
     def __init__(self, alpha=0, lr=0.5, max_iter=1e5, fit_intercept=True, batch_size = 32):
         self.alpha = alpha
@@ -174,3 +178,9 @@ class LogisticRegressionCustom(ClassifierMixin):
         prob_predictions = np.column_stack((1 - predictions, predictions))
 
         return prob_predictions
+###########################################################################
+
+model = LogisticRegressionCustom(alpha=1, fit_intercept=True)
+model.fit(X_train, Y_train)
+Y_pred = model.predict(X_test)
+
