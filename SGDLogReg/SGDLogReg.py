@@ -184,3 +184,9 @@ model = LogisticRegressionCustom(alpha=1, fit_intercept=True)
 model.fit(X_train, Y_train)
 Y_pred = model.predict(X_test)
 
+# check metrics
+from sklearn.metrics import accuracy_score, classification_report
+
+Y_prob = model.predict_proba(X_test)
+
+report = classification_report(Y_test, Y_pred)
