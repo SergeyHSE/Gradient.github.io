@@ -190,3 +190,15 @@ from sklearn.metrics import accuracy_score, classification_report
 Y_prob = model.predict_proba(X_test)
 
 report = classification_report(Y_test, Y_pred)
+print(report)
+"""
+              precision    recall  f1-score   support
+
+           0       0.38      1.00      0.55        43
+           1       0.00      0.00      0.00        71
+
+    accuracy                           0.38       114
+   macro avg       0.19      0.50      0.27       114
+weighted avg       0.14      0.38      0.21       114
+"""
+
