@@ -208,3 +208,17 @@ weights_scaler = [x[0] for x in weight_sorted]
 features_scaler = [x[1] for x in weight_sorted]
 df_scaler = pd.DataFrame({'features_scaler':features_scaler, 'weights_scaler':weights_scaler})
 
+import matplotlib.pyplot as plt
+
+fig, ax = plt.subplots(figsize=(12, 6)) 
+df_scaler.plot.barh(x='features_scaler', y='weights_scaler', color='skyblue', legend=False, ax=ax)
+plt.title('Feature Weights (Scaled)')
+plt.xlabel('Weight')
+plt.ylabel('Features')
+plt.gca().invert_yaxis()
+plt.grid(axis='x', linestyle='--', alpha=0.7)
+for i, v in enumerate(df_scaler['weights_scaler']):
+    ax.text(v + 0.01, i, f'{v:.2f}', va='center', fontsize=10)
+plt.tight_layout()
+plt.savefig('output.png', dpi=300)
+plt.show()
