@@ -222,3 +222,8 @@ for i, v in enumerate(df_scaler['weights_scaler']):
 plt.tight_layout()
 plt.savefig('output.png', dpi=300)
 plt.show()
+
+# Find more appropriate parametrs 
+
+lrs = [1e-5, 1e-4, 1e-3, 1e-2, 0.1, 0.2, 0.3, 0.5, 0.7, 1, 2, 5, 10] # Learning rates
+f1_list = []
