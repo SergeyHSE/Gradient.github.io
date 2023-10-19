@@ -201,4 +201,10 @@ print(report)
    macro avg       0.19      0.50      0.27       114
 weighted avg       0.14      0.38      0.21       114
 """
+Y_prob
+
+weight_sorted = sorted(zip(model.weights.ravel(), dataset.feature_names), reverse=True)
+weights_scaler = [x[0] for x in weight_sorted]
+features_scaler = [x[1] for x in weight_sorted]
+df_scaler = pd.DataFrame({'features_scaler':features_scaler, 'weights_scaler':weights_scaler})
 
