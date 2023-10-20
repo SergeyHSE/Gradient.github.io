@@ -247,3 +247,10 @@ plt.show()
 # Find more appropriate parametr for regularization coef
 alpha_values = [0.0, 0.1, 0.5, 1.0, 5.0, 10.0] 
 results = []
+
+for alpha in alpha_values:
+    model = LogisticRegressionCustom(alpha=alpha, lr=1e-4, max_iter=10000, fit_intercept=True)
+    model.fit(X_train, Y_train)
+    Y_pred = model.predict(X_test)
+    f1 = f1_score(Y_test, Y_pred, average='macro')
+    results.append((alpha, f1))
