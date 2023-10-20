@@ -223,7 +223,7 @@ plt.tight_layout()
 plt.savefig('output.png', dpi=300)
 plt.show()
 
-# Find more appropriate parametrs 
+# Find more appropriate parametr for learning rate
 
 lrs = [1e-5, 1e-4, 1e-3, 1e-2, 0.1, 0.2, 0.3, 0.5, 0.7, 1, 2, 5, 10] # Learning rates
 f1_list = []
@@ -243,3 +243,7 @@ plt.xlabel('Размер шага')
 plt.ylabel('Метрика')
 plt.grid()
 plt.show()
+
+# Find more appropriate parametr for regularization coef
+alpha_values = [0.0, 0.1, 0.5, 1.0, 5.0, 10.0] 
+results = []
