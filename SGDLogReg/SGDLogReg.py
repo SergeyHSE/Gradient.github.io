@@ -235,12 +235,11 @@ for lr in lrs:
     f1 = f1_score(Y_test, Y_pred, average='macro')
     f1_list.append(f1)
 
-
-plt.figure(figsize=(12, 7))
+plt.figure(figsize=(12, 7), dpi=100)
 plt.semilogx(lrs, f1_list, marker='o', linestyle='-')
-plt.title('Отношение метрики от размера шага')
-plt.xlabel('Размер шага')
-plt.ylabel('Метрика')
+plt.title('The dependence of the metric on the learning rate')
+plt.xlabel('Learning rate')
+plt.ylabel('F1-score')
 plt.grid()
 plt.show()
 
