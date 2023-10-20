@@ -227,3 +227,11 @@ plt.show()
 
 lrs = [1e-5, 1e-4, 1e-3, 1e-2, 0.1, 0.2, 0.3, 0.5, 0.7, 1, 2, 5, 10] # Learning rates
 f1_list = []
+
+for lr in lrs:
+    model = LogisticRegressionCustom(alpha=1.0, lr=lr, max_iter=10000, fit_intercept=True)
+    model.fit(X_train, Y_train)
+    Y_pred = model.predict(X_test)
+    f1 = f1_score(Y_test, Y_pred, average='macro')
+    f1_list.append(f1)
+
