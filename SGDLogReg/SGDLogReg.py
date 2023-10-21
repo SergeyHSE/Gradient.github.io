@@ -299,3 +299,9 @@ for alpha in alpha_values:
 
     ss_score = np.mean(ss_fold_scores)
     ss_scores.append(ss_score)
+
+best_alpha_kf = alpha_values[np.argmax(kf_scores)]
+best_alpha_ss = alpha_values[np.argmax(ss_scores)]
+
+print("The best alpha for KFold:", best_alpha_kf)
+print("The best alpha for ShuffleSplit:", best_alpha_ss)
