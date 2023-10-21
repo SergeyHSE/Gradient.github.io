@@ -260,6 +260,7 @@ for alpha, f1 in results:
     else:
         print(f"Model with alpha={alpha}: F1-мера = {f1}")
 
+# Choise the best regularization coef by KFold, ShuffleSplit
 
 from sklearn.model_selection import KFold, ShuffleSplit
 
