@@ -253,3 +253,9 @@ for alpha in alpha_values:
     Y_pred = model.predict(X_test)
     f1 = f1_score(Y_test, Y_pred, average='macro')
     results.append((alpha, f1))
+
+for alpha, f1 in results:
+    if alpha == 0.0:
+        print(f"Model without regularization: F1-мера = {f1}")
+    else:
+        print(f"Model with alpha={alpha}: F1-мера = {f1}")
