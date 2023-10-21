@@ -267,3 +267,24 @@ from sklearn.model_selection import KFold, ShuffleSplit
 # Create objects for KFold and ShuffleSplit
 kf = KFold(n_splits=5, shuffle=True, random_state=42)
 ss = ShuffleSplit(n_splits=5, test_size=0.2, random_state=42)
+
+alpha_values = [0.0, 0.1, 0.5, 1.0, 5.0, 10.0]
+
+kf_scores = []
+ss_scores = []
+
+for alpha in alpha_values:
+    model = LogisticRegressionCustom(alpha=alpha, lr=1e-4, max_iter=10000, fit_intercept=True, batch_size=32)
+
+    kf_fold_scores = []
+    for train_idx, val_idx in kf.split(X):
+        X_train, X_val = X[train_idx], X[val_idx]
+        Y_train, Y_val = Y[train_idx], Y[val_idx]
+
+        model.fit(X_train, Y_train)
+        Y_pred = model.predict(X_val)
+        kf_fold_scores.append(f1_score(Y_val, Y_pred, average='macro'))
+
+    kf_score = np.mean(kf_fold_scores)
+    kf_scores.append(kf_score)
+ 
