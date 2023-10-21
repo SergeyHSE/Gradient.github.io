@@ -306,6 +306,13 @@ best_alpha_ss = alpha_values[np.argmax(ss_scores)]
 print("The best alpha for KFold:", best_alpha_kf)
 print("The best alpha for ShuffleSplit:", best_alpha_ss)
 
+"""
+For the selected value of the regularization coef, estimate the variance of
+the average value of the quality metric on the test batches.
+To do this, perform cross-validation sufficiently many times (at least 100)
+and calculate the sample variance.
+"""
+
 %%time
 alpha = 0
 num_repeats = 100
