@@ -288,3 +288,14 @@ for alpha in alpha_values:
     kf_score = np.mean(kf_fold_scores)
     kf_scores.append(kf_score)
  
+    ss_fold_scores = []
+    for train_idx, val_idx in ss.split(X):
+        X_train, X_val = X[train_idx], X[val_idx]
+        Y_train, Y_val = Y[train_idx], Y[val_idx]
+
+        model.fit(X_train, Y_train)
+        Y_pred = model.predict(X_val)
+        ss_fold_scores.append(f1_score(Y_val, Y_pred, average='macro'))
+
+    ss_score = np.mean(ss_fold_scores)
+    ss_scores.append(ss_score)
