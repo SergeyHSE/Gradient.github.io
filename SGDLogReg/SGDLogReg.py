@@ -259,3 +259,10 @@ for alpha, f1 in results:
         print(f"Model without regularization: F1-мера = {f1}")
     else:
         print(f"Model with alpha={alpha}: F1-мера = {f1}")
+
+
+from sklearn.model_selection import KFold, ShuffleSplit
+
+# Create objects for KFold and ShuffleSplit
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+ss = ShuffleSplit(n_splits=5, test_size=0.2, random_state=42)
