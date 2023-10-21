@@ -305,3 +305,27 @@ best_alpha_ss = alpha_values[np.argmax(ss_scores)]
 
 print("The best alpha for KFold:", best_alpha_kf)
 print("The best alpha for ShuffleSplit:", best_alpha_ss)
+
+%%time
+alpha = 0
+num_repeats = 100
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+f1_scores_kf = []
+
+for _ in range(num_repeats):
+    f1_scores_fold_kf = []
+    
+    # KFold
+    for train_index, test_index in kf.split(X):
+        X_train, X_test = X[train_index], X[test_index]
+        Y_train, Y_test = Y[train_index], Y[test_index]
+
+        model = LogisticRegressionCustom(alpha=alpha, lr=1e-4, max_iter=10000, fit_intercept=True)
+        model.fit(X_train, Y_train)
+
+        Y_pred = model.predict(X_test)
+        f1 = f1_score(Y_test, Y_pred, average='macro') 
+        f1_scores_fold_kf.append(f1)
+
+    f1_scores_kf.append(np.mean(f1_scores_fold_kf)) 
