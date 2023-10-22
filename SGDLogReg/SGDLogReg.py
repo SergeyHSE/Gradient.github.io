@@ -12,6 +12,7 @@ from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.base import ClassifierMixin
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 dataset = load_breast_cancer()
 dataset['DESCR'].split('\n')[11:68]
@@ -76,6 +77,16 @@ dataset['DESCR'].split('\n')[11:68]
 """
 
 X, Y = dataset['data'], dataset['target']
+X_df = pd.DataFrame(X, columns=dataset.feature_names)
+y_df = pd.DataFrame(Y)
+
+plt.figure(figsize=(18, 18), dpi=100)
+corr_mat = X_df.corr()
+sns.heatmap(corr_mat, annot=True, cmap='coolwarm')
+plt.show()
+
+
+
 
 X_train, X_test, Y_train, Y_test = train_test_split(
     X, Y, test_size=0.2, random_state=42)
