@@ -11,6 +11,7 @@ from scipy.special import expit
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.base import ClassifierMixin
+import matplotlib.pyplot as plt
 
 dataset = load_breast_cancer()
 dataset['DESCR'].split('\n')[11:68]
@@ -208,8 +209,6 @@ weights_scaler = [x[0] for x in weight_sorted]
 features_scaler = [x[1] for x in weight_sorted]
 df_scaler = pd.DataFrame({'features_scaler':features_scaler, 'weights_scaler':weights_scaler})
 
-import matplotlib.pyplot as plt
-
 fig, ax = plt.subplots(figsize=(12, 6)) 
 df_scaler.plot.barh(x='features_scaler', y='weights_scaler', color='skyblue', legend=False, ax=ax)
 plt.title('Feature Weights (Scaled)')
@@ -340,3 +339,10 @@ for _ in range(num_repeats):
 variance_kf = np.var(f1_scores_kf)
 
 print(f"Variance for KFold with shuffle: {variance_kf}")
+
+alpha = 0
+num_repeats = 100
+
+ss = ShuffleSplit(n_splits=5, test_size=0.2, random_state=42) 
+
+f1_scores_ss = [] 
