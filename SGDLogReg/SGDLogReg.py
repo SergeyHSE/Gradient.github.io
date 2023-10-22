@@ -85,6 +85,19 @@ corr_mat = X_df.corr()
 sns.heatmap(corr_mat, annot=True, cmap='coolwarm')
 plt.show()
 
+plt.figure(figsize=(8, 6), dpi=100)
+count_data = y_df['target'].value_counts().reset_index()
+count_data.columns = ['target', 'count']
+ax = sns.barplot(x='target', y='count', data=count_data)
+plt.xlabel('Target')
+plt.ylabel('Count')
+plt.title('Count of 0 and 1 in the Target')
+for p in ax.patches:
+    ax.annotate(f'{p.get_height()}',
+                (p.get_x() + p.get_width() / 2., p.get_height()), ha='center',
+                va='center', fontsize=12, color='black', xytext=(0, 5),
+                textcoords='offset points')
+plt.show()
 
 
 
