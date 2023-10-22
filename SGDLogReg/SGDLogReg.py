@@ -387,3 +387,6 @@ for _ in range(num_repeats):
         f1_scores_fold_ss.append(f1)
 
     f1_scores_ss.append(np.mean(f1_scores_fold_ss))
+    
+variance_ss = np.var(f1_scores_ss)
+print(f"Variance for ShuffleSplit: {variance_ss}")
