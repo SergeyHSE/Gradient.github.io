@@ -336,3 +336,7 @@ for _ in range(num_repeats):
         f1_scores_fold_kf.append(f1)
 
     f1_scores_kf.append(np.mean(f1_scores_fold_kf)) 
+
+variance_kf = np.var(f1_scores_kf)
+
+print(f"Variance for KFold with shuffle: {variance_kf}")
