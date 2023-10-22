@@ -357,3 +357,20 @@ num_repeats = 100
 ss = ShuffleSplit(n_splits=5, test_size=0.2, random_state=42) 
 
 f1_scores_ss = [] 
+
+for _ in range(num_repeats):
+    f1_scores_fold_ss = []
+    
+    # ShuffleSplit
+    for train_index, test_index in ss.split(X): 
+        X_train, X_test = X[train_index], X[test_index]
+        Y_train, Y_test = Y[train_index], Y[test_index]
+
+        model = LogisticRegressionCustom(alpha=alpha, lr=1e-4, max_iter=10000, fit_intercept=True)
+        model.fit(X_train, Y_train)
+
+        Y_pred = model.predict(X_test)
+        f1 = f1_score(Y_test, Y_pred, average='macro') 
+        f1_scores_fold_ss.append(f1)
+
+    f1_scores_ss.append(np.mean(f1_scores_fold_ss))
