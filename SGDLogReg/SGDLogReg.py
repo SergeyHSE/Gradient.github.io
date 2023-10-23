@@ -144,6 +144,20 @@ plt.tight_layout()
 plt.show()
 
 
+from sklearn.preprocessing import StandardScaler
+
+scaler_alldata = StandardScaler()
+scaler_alldata.fit(X_df)  
+X_df = scaler_alldata.transform(X_df)
+X_df = pd.DataFrame(data=X_df, columns=dataset.feature_names)
+
+# Because we have a higher correlation between some variables we need remove one of them to
+# check main parametrs
+
+import statsmodels.api as sm
+
+log_reg = sm.Logit(endog=y_df, exog=X_df.drop('mean radius', axis=1)).fit()
+print(log_reg.summary())
 
 
 
@@ -153,8 +167,6 @@ plt.show()
 X_train, X_test, Y_train, Y_test = train_test_split(
     X, Y, test_size=0.2, random_state=42)
 X_train.shape, X_test.shape, Y_train.shape, Y_test.shape
-
-from sklearn.preprocessing import StandardScaler
 
 scaler = StandardScaler()
 scaler.fit(X_train)
