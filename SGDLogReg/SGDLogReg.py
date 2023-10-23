@@ -203,7 +203,12 @@ worst symmetry             -3.5569      2.880     -1.235      0.217      -9.202 
 worst fractal dimension   -10.9496      5.548     -1.974      0.048     -21.824      -0.075
 ===========================================================================================
 """
-
+"""
+Logistic regression model has successfully converged, and it appears to be a good fit for the data,
+as indicated by the high pseudo R-squared value and the low p-value for the likelihood ratio test.
+However examining the coefficient estimates and their associated standard errors
+show not good results.
+"""
 
 X_train, X_test, Y_train, Y_test = train_test_split(
     X, Y, test_size=0.2, random_state=42)
