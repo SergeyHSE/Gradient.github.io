@@ -121,6 +121,33 @@ for i in range(num_plots):
 plt.tight_layout()
 plt.show()
 
+fig, axes = plt.subplots(nrows=num_rows, ncols=num_col, figsize=(10, 40), dpi=100)
+axes = axes.flatten()
+for i in range(num_plots):
+    if i < num_plots:
+        sns.boxplot(x=name_features[i], data=X_df, ax=axes[i], orient='h',
+                    notch=True, medianprops={"color": "r", "linewidth": 2})
+        axes[i].set_title(f'Boxplot fot {name_features[i]}')
+        median_val = X_df[name_features[i]].median()
+        median_x = median_val
+        median_y = 0.45
+        axes[i].text(median_x, median_y, f'Median: {median_val:.2f}',
+        va='center', color='r', fontsize=10, ha='left')
+        mean_val = X_df[name_features[i]].mean()
+        mean_x = mean_val
+        mean_y = -0.45
+        axes[i].text(mean_x, mean_y, f'Mean: {mean_val:.2f}',
+                     va='center', color='darkblue', fontsize=10, ha='left')
+    else:
+        fig.delaxes(axes[i])
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+
 
 
 X_train, X_test, Y_train, Y_test = train_test_split(
@@ -416,3 +443,4 @@ print(f"Variance for ShuffleSplit: {variance_ss}")
 model = LogisticRegressionCustom(alpha=0, lr=1e-4, max_iter=10000, fit_intercept=True)
 model.fit(X_train, Y_train)
 Y_pred = model.predict(X_test)
+
