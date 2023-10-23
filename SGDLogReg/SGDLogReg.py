@@ -107,6 +107,19 @@ num_rows = 15
 num_col = 2
 num_plots = len(name_features)
 
+custom_palette = ["#0099CC", "#FF9900", "#99CC00", "#FF6666", "#6600CC"]
+sns.set_palette(custom_palette)
+
+fig, axes = plt.subplots(nrows=num_rows, ncols=num_col, figsize=(10, 40), dpi=100)
+axes = axes.flatten()
+for i in range(num_plots):
+    if i < num_plots:
+        sns.histplot(x=name_features[i], data=X_df, ax=axes[i], kde=True)
+        axes[i].set_title(f'Histplot for {name_features[i]}')
+    else:
+        fig.delaxes(axes[i])
+plt.tight_layout()
+plt.show()
 
 
 
