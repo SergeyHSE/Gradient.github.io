@@ -99,6 +99,15 @@ for p in ax.patches:
                 textcoords='offset points')
 plt.show()
 
+X_df.shape
+name_features = dataset.feature_names
+type(name_features)
+name_features = list(name_features)
+num_rows = 15
+num_col = 2
+num_plots = len(name_features)
+
+
 
 
 X_train, X_test, Y_train, Y_test = train_test_split(
