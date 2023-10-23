@@ -390,3 +390,7 @@ for _ in range(num_repeats):
     
 variance_ss = np.var(f1_scores_ss)
 print(f"Variance for ShuffleSplit: {variance_ss}")
+
+model = LogisticRegressionCustom(alpha=0, lr=1e-4, max_iter=10000, fit_intercept=True)
+model.fit(X_train, Y_train)
+Y_pred = model.predict(X_test)
