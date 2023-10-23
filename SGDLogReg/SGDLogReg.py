@@ -159,9 +159,50 @@ import statsmodels.api as sm
 log_reg = sm.Logit(endog=y_df, exog=X_df.drop('mean radius', axis=1)).fit()
 print(log_reg.summary())
 
-
-
-
+"""
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                 target   No. Observations:                  569
+Model:                          Logit   Df Residuals:                      540
+Method:                           MLE   Df Model:                           28
+Date:                Mon, 23 Oct 2023   Pseudo R-squ.:                  0.9564
+Time:                        13:12:05   Log-Likelihood:                -16.364
+converged:                       True   LL-Null:                       -375.72
+Covariance Type:            nonrobust   LLR p-value:                2.384e-133
+===========================================================================================
+                              coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------
+mean texture                0.0769      2.193      0.035      0.972      -4.222       4.376
+mean perimeter             16.8270     29.898      0.563      0.574     -41.772      75.426
+mean area                  -4.0364     34.429     -0.117      0.907     -71.516      63.443
+mean smoothness            -5.0169      3.373     -1.487      0.137     -11.628       1.594
+mean compactness           15.2518      8.255      1.848      0.065      -0.927      31.431
+mean concavity            -11.5815      8.405     -1.378      0.168     -28.055       4.892
+mean concave points        -4.5521      6.391     -0.712      0.476     -17.078       7.974
+mean symmetry               1.3828      1.608      0.860      0.390      -1.769       4.534
+mean fractal dimension     -1.9900      2.833     -0.702      0.482      -7.543       3.563
+radius error               -2.5763     10.687     -0.241      0.809     -23.522      18.369
+texture error               3.2859      2.217      1.482      0.138      -1.060       7.632
+perimeter error             7.4840      8.501      0.880      0.379      -9.177      24.145
+area error                -22.6468     20.846     -1.086      0.277     -63.504      18.211
+smoothness error           -1.2344      1.630     -0.757      0.449      -4.429       1.960
+compactness error          -8.0736      5.041     -1.601      0.109     -17.954       1.807
+concavity error             9.2044      5.417      1.699      0.089      -1.412      19.821
+concave points error      -11.0397      5.387     -2.049      0.040     -21.598      -0.481
+symmetry error              2.0896      2.403      0.870      0.384      -2.620       6.799
+fractal dimension error    16.5983      8.128      2.042      0.041       0.668      32.529
+worst radius              -24.0862     24.636     -0.978      0.328     -72.372      24.199
+worst texture              -6.8861      3.508     -1.963      0.050     -13.762      -0.010
+worst perimeter           -17.6062     21.865     -0.805      0.421     -60.461      25.248
+worst area                 21.4682     37.028      0.580      0.562     -51.105      94.041
+worst smoothness            2.5105      3.073      0.817      0.414      -3.512       8.533
+worst compactness           5.7097      6.665      0.857      0.392      -7.354      18.774
+worst concavity            -6.7691      6.213     -1.090      0.276     -18.946       5.408
+worst concave points        2.4271      4.478      0.542      0.588      -6.349      11.203
+worst symmetry             -3.5569      2.880     -1.235      0.217      -9.202       2.088
+worst fractal dimension   -10.9496      5.548     -1.974      0.048     -21.824      -0.075
+===========================================================================================
+"""
 
 
 X_train, X_test, Y_train, Y_test = train_test_split(
