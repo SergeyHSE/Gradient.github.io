@@ -502,3 +502,17 @@ model.fit(X_train, Y_train)
 Y_pred = model.predict(X_test)
 
 Y_prob = model.predict_proba(X_test)
+
+report = classification_report(Y_test, Y_pred)
+print(report)
+
+"""
+              precision    recall  f1-score   support
+
+           0       0.95      0.98      0.97        43
+           1       0.99      0.97      0.98        71
+
+    accuracy                           0.97       114
+   macro avg       0.97      0.97      0.97       114
+weighted avg       0.97      0.97      0.97       114
+"""
