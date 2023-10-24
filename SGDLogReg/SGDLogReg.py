@@ -143,7 +143,6 @@ for i in range(num_plots):
 plt.tight_layout()
 plt.show()
 
-
 from sklearn.preprocessing import StandardScaler
 
 scaler_alldata = StandardScaler()
@@ -502,3 +501,4 @@ model = LogisticRegressionCustom(alpha=0, lr=1e-4, max_iter=10000, fit_intercept
 model.fit(X_train, Y_train)
 Y_pred = model.predict(X_test)
 
+Y_prob = model.predict_proba(X_test)
