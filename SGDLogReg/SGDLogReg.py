@@ -332,7 +332,25 @@ print(report)
    macro avg       0.19      0.50      0.27       114
 weighted avg       0.14      0.38      0.21       114
 """
-Y_prob
+
+from sklearn.metrics import roc_curve, roc_auc_score
+
+Y_prob_d = np.delete(Y_prob, 0, 1)
+Y_prob_d
+
+fpr, tpr, threshold = roc_curve(Y_test, Y_prob_d)
+roc_auc = roc_auc_score(Y_test, Y_prob_d)
+
+plt.figure(figsize=(9, 7), dpi=100)
+plt.plot(fpr, tpr, label=f'ROC Curve (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], 'k--', color='red', label='Random')
+plt.xlim([-0.05, 1.05])
+plt.ylim([-0.05, 1.05])
+plt.xlabel('False Positive Rate (FPR)')
+plt.ylabel('True Positive Rate (TPR)')
+plt.title('Receiver Operating Characteristic (ROC) Curve')
+plt.legend(loc='lower right')
+plt.show()
 
 weight_sorted = sorted(zip(model.weights.ravel(), dataset.feature_names), reverse=True)
 weights_scaler = [x[0] for x in weight_sorted]
@@ -523,9 +541,6 @@ predicted_labels
 
 Y_prob_d = np.delete(Y_prob, 0, 1)
 Y_prob_d
-
-from sklearn.metrics import roc_curve, roc_auc_score
-
 fpr, tpr, threshold = roc_curve(Y_test, Y_prob_d)
 roc_auc = roc_auc_score(Y_test, Y_prob_d)
 
