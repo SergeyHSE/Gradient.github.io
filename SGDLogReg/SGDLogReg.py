@@ -520,3 +520,11 @@ weighted avg       0.97      0.97      0.97       114
 threshold = 0.5 
 predicted_labels = (Y_prob[:, 1] > threshold).astype(int)
 predicted_labels
+
+Y_prob_d = np.delete(Y_prob, 0, 1)
+Y_prob_d
+
+from sklearn.metrics import roc_curve, roc_auc_score
+
+fpr, tpr, threshold = roc_curve(Y_test, Y_prob_d)
+roc_auc = roc_auc_score(Y_test, Y_prob_d)
