@@ -528,3 +528,8 @@ from sklearn.metrics import roc_curve, roc_auc_score
 
 fpr, tpr, threshold = roc_curve(Y_test, Y_prob_d)
 roc_auc = roc_auc_score(Y_test, Y_prob_d)
+
+plt.figure(figsize=(8, 6), dpi=100)
+plt.plot(fpr, tpr, label=f'ROC Curve (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], 'k--', color='red', label='Random')
+plt.xlim([0.0, 1.0])
