@@ -516,3 +516,7 @@ print(report)
    macro avg       0.97      0.97      0.97       114
 weighted avg       0.97      0.97      0.97       114
 """
+
+threshold = 0.5 
+predicted_labels = (Y_prob[:, 1] > threshold).astype(int)
+predicted_labels
