@@ -377,14 +377,20 @@ w_history = np.array(model.w_history)
 
 # Now you can plot the gradient trajectory as previously shown
 # For 3D visualization (if applicable):
+from mpl_toolkits.mplot3d import Axes3D
+
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter(w_history[:, 0], w_history[:, 1], w_history[:, 2], c='b', marker='o')
-ax.set_xlabel('Weight 1')
-ax.set_ylabel('Weight 2')
-ax.set_zlabel('Weight 3')
-ax.set_title('Gradient Trajectory (3D)')
-plt.show()
+w_history = np.array(model.w_history)
+if w_history.shape[1] >= 3:
+    ax.scatter(w_history[:, 0], w_history[:, 1], w_history[:, 2], c='b', marker='o')
+    ax.set_xlabel('Weight 0')
+    ax.set_ylabel('Weight 1')
+    ax.set_zlabel('Weight 2')
+    ax.set_title('Gradient Trajectory (3D)')
+    plt.show()
+else:
+    print("Insufficient dimensions for 3D plot.")
 
 # We recieved wrong picture
 # We should try scaling variables
