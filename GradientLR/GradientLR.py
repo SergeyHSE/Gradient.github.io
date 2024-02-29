@@ -552,8 +552,6 @@ class LinearRegressionSGDRidge(BaseEstimator):
         self.w_history = []
         self.batch_size = batch_size
         self.gamma = gamma
-mape_sgd = MAPE(y_test, y_pred_sgd)
-mape_sgd
 
     def fit(self, X, y):
         """
